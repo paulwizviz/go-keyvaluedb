@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  badgercli:
+    build:
+      context: ../../
+      dockerfile: ./build/badgerdb/cli.dockerfile
+      args:
+        GO_VER: 1.18.3
+        OS_VER: ubuntu:18.04
+    image: ${BADGE_CLI_IMAGE:-go-db/badgercli:current}

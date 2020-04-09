@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+
+  middleware:
+    image: ${INFLUX_CMD_IMAGE}
+    container_name: ${INFLUX_CMD_CONTAINER}
+    command: influxcmd
+    ports:
+      - 4040:4040
+    networks:
+      - local
+
+  influxdb:
+    image: influxdb:1.7.10
+    container_name: influxdb
+    environment: 
+      - INFLUXDB_DB=nodes
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_USER=monitor
+      - INFLUXDB_USER_PASSWORD=secret
+    ports:
+      - 8086:8086
+      - 8083:8083
+    networks:
+      - local
+
+networks:
+  local:
+    name: $NETWORK

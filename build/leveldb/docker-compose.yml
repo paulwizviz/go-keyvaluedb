@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  leveldb:
+    build:
+      context: ../../
+      dockerfile: ./build/leveldb/leveldb.dockerfile
+      args:
+        GO_VER: 1.16-alpine
+        ALPINE_VER: 3.14
+    image: ${LEVELDB_CMD_IMAGE:-go-db/levedb:current}
