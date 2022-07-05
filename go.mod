@@ -1,4 +1,4 @@
-module github.com/paulwizviz/go-db
+module github.com/paulwizviz/learn-keyvaluebd
 
 go 1.18
 
