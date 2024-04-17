@@ -1,6 +1,11 @@
 #!/bin/bash
 
-export BADGERDB_CLI_IMAGE=go-db/badgercli:current
+if [ "$(basename $(realpath .))" != "learn-keyvaluedb" ]; then
+    echo "You are outside of the project"
+    exit 0
+fi
+
+export BADGERDB_CLI_IMAGE=lean-keyvaluedb/badgercli:current
 export BADGERDB_CLI_CONTAINER=badgerdbcli
 
 COMMAND="$1"

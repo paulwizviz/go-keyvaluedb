@@ -7,6 +7,6 @@ services:
       context: ../../
       dockerfile: ./build/leveldb/leveldb.dockerfile
       args:
-        GO_VER: 1.16-alpine
-        ALPINE_VER: 3.14
+        GO_VER: 1.22
+        OS_VER: 3.19
     image: ${LEVELDB_CMD_IMAGE:-go-db/levedb:current}

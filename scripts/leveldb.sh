@@ -1,6 +1,11 @@
 #!/bin/bash
 
-export LEVELDB_CMD_IMAGE=go-db/leveldb:current
+if [ "$(basename $(realpath .))" != "learn-keyvaluedb" ]; then
+    echo "You are outside of the project"
+    exit 0
+fi
+
+export LEVELDB_CMD_IMAGE=learn-keyvaluedb/leveldb:current
 
 COMMAND="$1"
 

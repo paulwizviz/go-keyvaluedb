@@ -1,8 +1,13 @@
 #!/bin/bash
 
-export INFLUX_CMD_IMAGE=go-db/influxcmd:current
+if [ "$(basename $(realpath .))" != "learn-keyvaluedb" ]; then
+    echo "You are outside of the project"
+    exit 0
+fi
+
+export INFLUX_CMD_IMAGE=lean-keyvaluedb/influxcmd:current
 export INFLUX_CMD_CONTAINER=influxmiddleware
-export NETWORK=go-db_influx-network
+export NETWORK=lean-keyvaluedb_influx-network
 
 COMMAND="$1"
 
