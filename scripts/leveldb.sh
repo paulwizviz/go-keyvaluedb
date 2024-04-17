@@ -3,15 +3,11 @@
 if [ "$(basename $(realpath .))" != "learn-keyvaluedb" ]; then
     echo "You are outside of the project"
     exit 0
+else
+    . ./scripts/images.sh
 fi
 
-export LEVELDB_CMD_IMAGE=learn-keyvaluedb/leveldb:current
-
 COMMAND="$1"
-
-function build(){
-    docker-compose -f ./build/leveldb/docker-compose.yml build
-}
 
 function clean(){
     docker rmi -f ${LEVELDB_CMD_IMAGE}
@@ -20,13 +16,13 @@ function clean(){
 
 case $COMMAND in
     "build")
-        build
+        build_leveldb
         ;;
     "shell")
         docker run --name testleveldb -it --rm ${LEVELDB_CMD_IMAGE} /bin/sh
         ;;
     "clean")
-        clean
+        clean_images
         ;;
     *)
         echo "$0 [ build | run | clean ]"

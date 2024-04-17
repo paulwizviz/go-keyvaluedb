@@ -3,16 +3,14 @@
 if [ "$(basename $(realpath .))" != "learn-keyvaluedb" ]; then
     echo "You are outside of the project"
     exit 0
+else
+    . ./scripts/images.sh
 fi
 
-export BADGERDB_CLI_IMAGE=lean-keyvaluedb/badgercli:current
+
 export BADGERDB_CLI_CONTAINER=badgerdbcli
 
 COMMAND="$1"
-
-function build(){
-    docker-compose -f ./build/badgerdb/builder.yml build
-}
 
 function clean(){
     docker rmi -f ${BADGERDB_CLI_IMAGE}
@@ -21,13 +19,13 @@ function clean(){
 
 case $COMMAND in
     "build")
-        build
+        build_badgerdb
+        ;;
+    "clean")
+        clean_images
         ;;
     "shell")
         docker run --name ${BADGERDB_CLI_CONTAINER} -w /opt -it --rm ${BADGERDB_CLI_IMAGE} /bin/bash
-        ;;
-    "clean")
-        clean
         ;;
     *)
         echo "$0 [ build | run | clean ]"

@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  leveldb:
+    build:
+      context: ../
+      dockerfile: ./build/leveldb.dockerfile
+      args:
+        GO_VER: 1.22
+        OS_VER: 3.19
+    image: ${LEVELDB_CMD_IMAGE}
+
+  badgerdb:
+    build:
+      context: ../
+      dockerfile: ./build/badgerdb.dockerfile
+      args:
+        GO_VER: 1.18.3
+        OS_VER: ubuntu:18.04
+    image: ${BADGERDB_CLI_IMAGE}
+
+  influxdb:
+    build:
+      context: ../
+      dockerfile: ./build/influxdb.dockerfile
+      args:
+        GO_VER: 1.16-alpine
+        ALPINE_VER: 3.14
+    image: ${INFLUX_CMD_IMAGE}
