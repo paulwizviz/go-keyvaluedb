@@ -1,6 +1,6 @@
 module github.com/paulwizviz/learn-keyvaluebd
 
-go 1.18
+go 1.23
 
 require (
 	github.com/dgraph-io/badger/v3 v3.2103.2
